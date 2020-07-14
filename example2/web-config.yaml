@@ -1,0 +1,35 @@
+---
+- name: 'Configure Web App'
+  hosts: webapp
+  vars:
+    - repo: repo.com/repo.git
+      version: 8
+
+  tasks:
+    - name: install nginx
+      debug:
+        msg: "yum | apt | dnf nginx"
+
+
+    - name: ensure web directory
+      debug:
+        msg: "mkdir /webapp"
+
+    - name: get content
+      debug:
+        msg: "git clone -b {{ version }} {{ repo }} /webapp"
+
+    - name: nginx config
+      debug:
+        msg: "put nginx config in place"
+      notify: restart nginx
+      changed_when: True
+
+    - name: nginx config running
+      debug:
+        msg: "service nginx start"
+
+  handlers:
+    - name: restart nginx
+      debug:
+        msg: "service nginx restart"
