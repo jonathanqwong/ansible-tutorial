@@ -1,0 +1,11 @@
+[webapp]
+host1
+host2
+host3
+
+[lb]
+loadbalancer1
+loadbalancer2
+
+[all:vars]
+ansible_connection=local

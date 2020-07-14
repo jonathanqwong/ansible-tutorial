@@ -1,0 +1,8 @@
+---
+- name: 'Demo Play'
+  hosts: host1
+  tasks:
+    - name: ansible pip
+      pip:
+        name: ansible
+        virtualenv: ~/challenge1
